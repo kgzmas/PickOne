@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>What Should We Eat?</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      background: #fdfdfd;
+      margin-top: 80px;
+    }
+    select, button {
+      padding: 10px;
+      margin: 10px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+    }
+    button:hover { background-color: #45a049; }
+    #result {
+      margin-top: 30px;
+      font-size: 24px;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <h1>🍜 What Should We Eat?</h1>
+
+  <div>
+    <label for="cuisine">Cuisine:</label>
+    <select id="cuisine">
+      <option value="">Any</option>
+      <option value="Chinese">Chinese</option>
+      <option value="Japanese">Japanese</option>
+      <option value="Mexican">Mexican</option>
+      <option value="American">American</option>
+      <option value="Thai">Thai</option>
+    </select>
+
+    <label for="price">Price:</label>
+    <select id="price">
+      <option value="">Any</option>
+      <option value="$">$</option>
+      <option value="$$">$$</option>
+      <option value="$$$">$$$</option>
+    </select>
+  </div>
+
+  <button onclick="pickRestaurant()">Pick One!</button>
+
+  <div id="result"></div>
+
+  <script>
+    const restaurants = [
+      { name: "Din Tai Fung", cuisine: "Chinese", price: "$$$" },
+      { name: "Sushi Stop", cuisine: "Japanese", price: "$$" },
+      { name: "Panda Express", cuisine: "Chinese", price: "$" },
+      { name: "Chipotle", cuisine: "Mexican", price: "$$" },
+      { name: "Shake Shack", cuisine: "American", price: "$$" },
+      { name: "Nobu", cuisine: "Japanese", price: "$$$" }
+    ];
+
+    function pickRestaurant() {
+      const cuisine = document.getElementById("cuisine").value;
+      const price = document.getElementById("price").value;
+
+      let filtered = restaurants;
+
+      if (cuisine) filtered = filtered.filter(r => r.cuisine === cuisine);
+      if (price) filtered = filtered.filter(r => r.price === price);
+
+      if (filtered.length === 0) {
+        document.getElementById("result").innerText = "No match found 😢";
+        return;
+      }
+
+      const choice = filtered[Math.floor(Math.random() * filtered.length)];
+      document.getElementById("result").innerText = `How about... ${choice.name}? 🍽️`;
+    }
+  </script>
+</body>
+</html>

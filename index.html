@@ -110,6 +110,13 @@
   </audio>
 
   <script>
+    const clickSound = document.getElementById('clickSound');
+  
+      function playClick() {
+        clickSound.currentTime = 0;
+        clickSound.play();
+      }
+    
     const restaurants = [
   {"name": "Soup Shop", "cuisine": "Vietnamese", "price": "$$", "distance": "0-5mi"},
   {"name": "Nep Café", "cuisine": "Vietnamese", "price": "$$", "distance": "5-10mi"},
@@ -181,6 +188,7 @@
 </body>
 
 </html>
+
 
 
 

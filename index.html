@@ -3,67 +3,84 @@
 <head>
   <meta charset="UTF-8">
   <title>What Should We Eat?</title>
-    <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      text-align: center;
-      margin-top: 80px;
-      color: #4a2f0f;
-      /* Gradient background */
-      background: linear-gradient(135deg, #fff2df 0%, #ffd8a8 40%, #ffb88c 100%);
-      background-attachment: fixed;
-      height: 100vh;
-    }
+<style>
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    color: #4a2f0f;
+    background: linear-gradient(135deg, #fff2df 0%, #ffd8a8 40%, #ffb88c 100%);
+    background-attachment: fixed;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 
-    h1 {
-      color: #b5441f;
-      text-shadow: 1px 1px 2px rgba(255, 221, 184, 0.8);
-    }
+  h1 {
+    color: #b5441f;
+    text-shadow: 1px 1px 2px rgba(255, 221, 184, 0.8);
+    font-size: 48px;
+    margin-bottom: 40px;
+  }
 
-    select, button {
-      padding: 10px;
-      margin: 10px;
-      font-size: 16px;
-      border-radius: 8px;
-      border: 1px solid #d8a36f;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
+  div {
+    margin-bottom: 30px;
+  }
 
-    select {
-      background-color: #fff7ec;
-      color: #4a2f0f;
-    }
+  label {
+    font-size: 20px;
+    margin-right: 5px;
+  }
 
-    button {
-      background-color: #ff7043;
-      color: white;
-      cursor: pointer;
-      transition: all 0.15s ease;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      font-weight: 600;
-      border: none;
-    }
-    
-    button:hover {
-      background-color: #f4511e;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.25);
-    }
-    
-    button:active {
-      background-color: #e03e10; /* darker orange for pressed look */
-      transform: translateY(2px); /* visually pushes button down */
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* shallower shadow */
-    }
+  select, button {
+    padding: 14px 18px;
+    margin: 10px;
+    font-size: 18px;
+    border-radius: 8px;
+    border: 1px solid #d8a36f;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
 
-    result {
-      margin-top: 40px;
-      font-size: 28px;
-      font-weight: bold;
-      color: #6e2b0f;
-      text-shadow: 1px 1px 3px rgba(255, 220, 190, 0.7);
-    }
-  </style>
+  select {
+    background-color: #fff7ec;
+    color: #4a2f0f;
+  }
+
+  button {
+    background-color: #ff7043;
+    color: white;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    font-weight: 600;
+    border: none;
+    font-size: 20px;
+    padding: 16px 30px;
+    border-radius: 10px;
+  }
+
+  button:hover {
+    background-color: #f4511e;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.25);
+  }
+
+  button:active {
+    background-color: #e03e10;
+    transform: translateY(2px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+
+  #result {
+    margin-top: 40px;
+    font-size: 36px;
+    font-weight: bold;
+    color: #6e2b0f;
+    text-shadow: 1px 1px 3px rgba(255, 220, 190, 0.7);
+    min-height: 60px;
+  }
+</style>
 </head>
 <body>
   <h1>🍜 What Should We Eat?</h1>
@@ -188,6 +205,7 @@
 </body>
 
 </html>
+
 
 
 

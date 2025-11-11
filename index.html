@@ -38,15 +38,22 @@
       background-color: #ff7043;
       color: white;
       cursor: pointer;
-      transition: all 0.25s ease;
+      transition: all 0.15s ease;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       font-weight: 600;
+      border: none;
     }
-
+    
     button:hover {
       background-color: #f4511e;
-      transform: scale(1.05);
+      transform: translateY(-2px);
       box-shadow: 0 6px 10px rgba(0, 0, 0, 0.25);
+    }
+    
+    button:active {
+      background-color: #e03e10; /* darker orange for pressed look */
+      transform: translateY(2px); /* visually pushes button down */
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* shallower shadow */
     }
 
     #result {
@@ -170,6 +177,7 @@
 </body>
 
 </html>
+
 
 
 

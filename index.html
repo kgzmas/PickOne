@@ -82,6 +82,16 @@
   text-align: center;
   min-height: 80px;
 }
+ #details {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #7a3a18;
+  text-align: center;
+  opacity: 0.95;
+  min-height: 24px; /* keeps layout stable even before first pick */
+}
+  
 </style>
 </head>
 <body>
@@ -201,12 +211,17 @@
       }
 
       const choice = filtered[Math.floor(Math.random() * filtered.length)];
-      document.getElementById("result").innerText = `How about... ${choice.name}? 🍽️`;
+      // BIG line (restaurant name)
+      resultEl.innerText = `How about... ${choice.name}? 🍽️`;
+
+      // NEW: details line under it
+      detailsEl.innerText = `Cuisine: ${choice.cuisine} • Price: ${choice.price} • Distance: ${choice.distance}`;
     }
   </script>
 </body>
 
 </html>
+
 
 
 

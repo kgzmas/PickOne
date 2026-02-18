@@ -74,24 +74,25 @@
   }
 
   #result {
-  margin-top: 40px;
-  font-size: 52px !important;
-  font-weight: bold;
-  color: #6e2b0f;
-  text-shadow: 1px 1px 3px rgba(255, 220, 190, 0.7);
-  text-align: center;
-  min-height: 80px;
-}
- #details {
-  margin-top: 10px;
-  font-size: 18px;
-  font-weight: 600;
-  color: #7a3a18;
-  text-align: center;
-  opacity: 0.95;
-  min-height: 24px; /* keeps layout stable even before first pick */
-}
-  
+    margin-top: 40px;
+    font-size: 52px !important;
+    font-weight: bold;
+    color: #6e2b0f;
+    text-shadow: 1px 1px 3px rgba(255, 220, 190, 0.7);
+    text-align: center;
+    min-height: 80px;
+  }
+
+  /* NEW: details line under the big result */
+  #details {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #7a3a18;
+    text-align: center;
+    opacity: 0.95;
+    min-height: 24px; /* keeps layout stable even before first pick */
+  }
 </style>
 </head>
 <body>
@@ -133,6 +134,8 @@
   <button onclick="playClick(); pickRestaurant();">Pick One!</button>
 
   <div id="result"></div>
+  <!-- NEW: details container -->
+  <div id="details"></div>
   
   <audio id="clickSound" preload="auto">
     <source src="https://raw.githubusercontent.com/kgzmas/PickOne/main/toy-button-105724.mp3" type="audio/mpeg">
@@ -140,64 +143,67 @@
 
   <script>
     const clickSound = document.getElementById('clickSound');
-  
-      function playClick() {
-        clickSound.currentTime = 0;
-        clickSound.play();
-      }
-    
+
+    function playClick() {
+      clickSound.currentTime = 0;
+      clickSound.play();
+    }
+
     const restaurants = [
-  {"name": "Soup Shop", "cuisine": "Vietnamese", "price": "$$", "distance": "0-5mi"},
-  {"name": "Nep Café", "cuisine": "Vietnamese", "price": "$$", "distance": "5-10mi"},
-  {"name": "Tigawok Mini Bowls", "cuisine": "Chinese", "price": "$$", "distance": "5-10mi"},
-  {"name": "Sup Noodle Bar", "cuisine": "Vietnamese", "price": "$$", "distance": "5-10mi"},
-  {"name": "Menya Hanabi", "cuisine": "Japanese", "price": "$$", "distance": "0-5mi"},
-  {"name": "BlueBerry Social", "cuisine": "American", "price": "$$", "distance": "5-10mi"},
-  {"name": "McDonald's", "cuisine": "American", "price": "$", "distance": "0-5mi"},
-  {"name": "Chronic Tacos", "cuisine": "Mexican", "price": "$", "distance": "0-5mi"},
-  {"name": "Silverlake Ramen", "cuisine": "Japanese", "price": "$$", "distance": "0-5mi"},
-  {"name": "Shake Shack", "cuisine": "American", "price": "$$", "distance": "0-5mi"},
-  {"name": "MOOYAH Burgers", "cuisine": "American", "price": "$$", "distance": "0-5mi"},
-  {"name": "A&J Restaurant", "cuisine": "Chinese", "price": "$$", "distance": "0-5mi"},
-  {"name": "Brodard Restaurant", "cuisine": "Vietnamese", "price": "$$", "distance": "10-15mi"},
-  {"name": "ROL Hand Roll Bar", "cuisine": "Japanese", "price": "$$$", "distance": "5-10mi"},
-  {"name": "YinTang Spicy Hot Pot", "cuisine": "Chinese", "price": "$$", "distance": "0-5mi"},
-  {"name": "The Stand", "cuisine": "American", "price": "$$", "distance": "0-5mi"},
-  {"name": "Chipotle", "cuisine": "Mexican", "price": "$$", "distance": "0-5mi"},
-  {"name": "sweetgreen", "cuisine": "American", "price": "$$", "distance": "0-5mi"},
-  {"name": "The Melt", "cuisine": "American", "price": "$$", "distance": "0-5mi"},
-  {"name": "Pepper Lunch", "cuisine": "Japanese", "price": "$$", "distance": "0-5mi"},
-  {"name": "Panda Express", "cuisine": "Chinese", "price": "$$", "distance": "0-5mi"},
-  {"name": "Dizzy Bird", "cuisine": "Lebanese", "price": "$$", "distance": "0-5mi"},
-  {"name": "Chan Chan Food House", "cuisine": "Korean", "price": "$$", "distance": "5-10mi"},
-  {"name": "Haidilao Hotpot", "cuisine": "Chinese", "price": "$$", "distance": "5-10mi"},
-  {"name": "Little Sister", "cuisine": "Vietnamese", "price": "$$", "distance": "0-5mi"},
-  {"name": "Kingchops", "cuisine": "Chinese", "price": "$$", "distance": "0-5mi"},
-  {"name": "Kuan Zhai Alley", "cuisine": "Chinese", "price": "$$", "distance": "0-5mi"},
-  {"name": "dPot Unlimited", "cuisine": "Korean", "price": "$$$", "distance": "0-5mi"},
-  {"name": "Tomikawa", "cuisine": "Japanese", "price": "$$$", "distance": "0-5mi"},
-  {"name": "YGF Malatang", "cuisine": "Chinese", "price": "$$", "distance": "5-10mi"},
-  {"name": "Rooster & Rice", "cuisine": "Chinese", "price": "$$", "distance": "0-5mi"},
-  {"name": "Luna Grill", "cuisine": "Mediterranean", "price": "$$", "distance": "5-10mi"},
-  {"name": "Nice To Meet You Skewer Hot Pot", "cuisine": "Chinese", "price": "$$$", "distance": "0-5mi"},
-  {"name": "The Kebab Shop", "cuisine": "Mediterranean", "price": "$$", "distance": "5-10mi"},
-  {"name": "Utopia Café", "cuisine": "Europe", "price": "$$", "distance": "5-10mi"},
-  {"name": "In-N-Out Burger", "cuisine": "American", "price": "$", "distance": "5-10mi"},
-  {"name": "Stonefire Grill", "cuisine": "American", "price": "$$", "distance": "0-5mi"},
-  {"name": "Olive Garden", "cuisine": "Italian", "price": "$$", "distance": "0-5mi"},
-  {"name": "Jollibee", "cuisine": "Philippines", "price": "$$", "distance": "5-10mi"},
-  {"name": "California Fish Grill", "cuisine": "American", "price": "$$", "distance": "0-5mi"},
-  {"name": "Tang190", "cuisine": "Korean", "price": "$$", "distance": "0-5mi"},
-  {"name": "Tasty Noodle House", "cuisine": "Chinese", "price": "$$", "distance": "0-5mi"},
-  {"name": "Taiko", "cuisine": "Japanese", "price": "$$", "distance": "0-5mi"},
-  {"name": "Chick fil A", "cuisine": "American", "price": "$", "distance": "0-5mi"},
-  {"name": "Cava", "cuisine": "Mediterranean", "price": "$$", "distance": "0-5mi"}
-];
+      {"name": "Soup Shop", "cuisine": "Vietnamese", "price": "$$", "distance": "0-5mi"},
+      {"name": "Nep Café", "cuisine": "Vietnamese", "price": "$$", "distance": "5-10mi"},
+      {"name": "Tigawok Mini Bowls", "cuisine": "Chinese", "price": "$$", "distance": "5-10mi"},
+      {"name": "Sup Noodle Bar", "cuisine": "Vietnamese", "price": "$$", "distance": "5-10mi"},
+      {"name": "Menya Hanabi", "cuisine": "Japanese", "price": "$$", "distance": "0-5mi"},
+      {"name": "BlueBerry Social", "cuisine": "American", "price": "$$", "distance": "5-10mi"},
+      {"name": "McDonald's", "cuisine": "American", "price": "$", "distance": "0-5mi"},
+      {"name": "Chronic Tacos", "cuisine": "Mexican", "price": "$", "distance": "0-5mi"},
+      {"name": "Silverlake Ramen", "cuisine": "Japanese", "price": "$$", "distance": "0-5mi"},
+      {"name": "Shake Shack", "cuisine": "American", "price": "$$", "distance": "0-5mi"},
+      {"name": "MOOYAH Burgers", "cuisine": "American", "price": "$$", "distance": "0-5mi"},
+      {"name": "A&J Restaurant", "cuisine": "Chinese", "price": "$$", "distance": "0-5mi"},
+      {"name": "Brodard Restaurant", "cuisine": "Vietnamese", "price": "$$", "distance": "10-15mi"},
+      {"name": "ROL Hand Roll Bar", "cuisine": "Japanese", "price": "$$$", "distance": "5-10mi"},
+      {"name": "YinTang Spicy Hot Pot", "cuisine": "Chinese", "price": "$$", "distance": "0-5mi"},
+      {"name": "The Stand", "cuisine": "American", "price": "$$", "distance": "0-5mi"},
+      {"name": "Chipotle", "cuisine": "Mexican", "price": "$$", "distance": "0-5mi"},
+      {"name": "sweetgreen", "cuisine": "American", "price": "$$", "distance": "0-5mi"},
+      {"name": "The Melt", "cuisine": "American", "price": "$$", "distance": "0-5mi"},
+      {"name": "Pepper Lunch", "cuisine": "Japanese", "price": "$$", "distance": "0-5mi"},
+      {"name": "Panda Express", "cuisine": "Chinese", "price": "$$", "distance": "0-5mi"},
+      {"name": "Dizzy Bird", "cuisine": "Lebanese", "price": "$$", "distance": "0-5mi"},
+      {"name": "Chan Chan Food House", "cuisine": "Korean", "price": "$$", "distance": "5-10mi"},
+      {"name": "Haidilao Hotpot", "cuisine": "Chinese", "price": "$$", "distance": "5-10mi"},
+      {"name": "Little Sister", "cuisine": "Vietnamese", "price": "$$", "distance": "0-5mi"},
+      {"name": "Kingchops", "cuisine": "Chinese", "price": "$$", "distance": "0-5mi"},
+      {"name": "Kuan Zhai Alley", "cuisine": "Chinese", "price": "$$", "distance": "0-5mi"},
+      {"name": "dPot Unlimited", "cuisine": "Korean", "price": "$$$", "distance": "0-5mi"},
+      {"name": "Tomikawa", "cuisine": "Japanese", "price": "$$$", "distance": "0-5mi"},
+      {"name": "YGF Malatang", "cuisine": "Chinese", "price": "$$", "distance": "5-10mi"},
+      {"name": "Rooster & Rice", "cuisine": "Chinese", "price": "$$", "distance": "0-5mi"},
+      {"name": "Luna Grill", "cuisine": "Mediterranean", "price": "$$", "distance": "5-10mi"},
+      {"name": "Nice To Meet You Skewer Hot Pot", "cuisine": "Chinese", "price": "$$$", "distance": "0-5mi"},
+      {"name": "The Kebab Shop", "cuisine": "Mediterranean", "price": "$$", "distance": "5-10mi"},
+      {"name": "Utopia Café", "cuisine": "Europe", "price": "$$", "distance": "5-10mi"},
+      {"name": "In-N-Out Burger", "cuisine": "American", "price": "$", "distance": "5-10mi"},
+      {"name": "Stonefire Grill", "cuisine": "American", "price": "$$", "distance": "0-5mi"},
+      {"name": "Olive Garden", "cuisine": "Italian", "price": "$$", "distance": "0-5mi"},
+      {"name": "Jollibee", "cuisine": "Philippines", "price": "$$", "distance": "5-10mi"},
+      {"name": "California Fish Grill", "cuisine": "American", "price": "$$", "distance": "0-5mi"},
+      {"name": "Tang190", "cuisine": "Korean", "price": "$$", "distance": "0-5mi"},
+      {"name": "Tasty Noodle House", "cuisine": "Chinese", "price": "$$", "distance": "0-5mi"},
+      {"name": "Taiko", "cuisine": "Japanese", "price": "$$", "distance": "0-5mi"},
+      {"name": "Chick fil A", "cuisine": "American", "price": "$", "distance": "0-5mi"},
+      {"name": "Cava", "cuisine": "Mediterranean", "price": "$$", "distance": "0-5mi"}
+    ];
 
     function pickRestaurant() {
       const cuisine = document.getElementById("cuisine").value;
       const price = document.getElementById("price").value;
       const distance = document.getElementById("distance").value;
+
+      const resultEl = document.getElementById("result");
+      const detailsEl = document.getElementById("details");
 
       let filtered = restaurants;
 
@@ -206,11 +212,13 @@
       if (distance) filtered = filtered.filter(r => r.distance === distance);
 
       if (filtered.length === 0) {
-        document.getElementById("result").innerText = "No match found 😢";
+        resultEl.innerText = "No match found 😢";
+        detailsEl.innerText = ""; // clear details when no match
         return;
       }
 
       const choice = filtered[Math.floor(Math.random() * filtered.length)];
+
       // BIG line (restaurant name)
       resultEl.innerText = `How about... ${choice.name}? 🍽️`;
 
@@ -219,22 +227,4 @@
     }
   </script>
 </body>
-
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

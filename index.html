@@ -220,7 +220,7 @@
       const choice = filtered[Math.floor(Math.random() * filtered.length)];
 
       // BIG line (restaurant name)
-      resultEl.innerText = `How about... ${choice.name}? 🍽️`;
+      resultEl.innerText = `${choice.name}? 🍽️`;
 
       // NEW: details line under it
       detailsEl.innerText = `Cuisine: ${choice.cuisine} • Price: ${choice.price} • Distance: ${choice.distance}`;
@@ -228,3 +228,4 @@
   </script>
 </body>
 </html>
+
